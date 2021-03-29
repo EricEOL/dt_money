@@ -1,6 +1,6 @@
 //Criação de um Contexto com ContextAPI
-import React, { createContext, useEffect, useState, ReactNode } from 'react';
-import { api } from './services/api';
+import React, { createContext, useEffect, useState, ReactNode, useContext } from 'react';
+import { api } from '../services/api';
 
 interface Transaction {
     id: number;
@@ -23,7 +23,7 @@ interface TransactionsContextData {
 }
 
 //Detro do create Context se passa o valor que deve iniciar
-export const TransactionsContext = createContext<TransactionsContextData>({} as TransactionsContextData);
+const TransactionsContext = createContext<TransactionsContextData>({} as TransactionsContextData);
 
 //Provider serve para que os outros elementos da aplicação tenham acesso ao Contexto.
 //No arquivo App.tsx, colocaremos nosso provider, para que todos os componentes tenham acesso ao contexto.
@@ -70,4 +70,10 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
             {children}
         </TransactionsContext.Provider>
     )
+}
+
+//Criando o próprio hook
+export function useTransactions() {
+    const context = useContext(TransactionsContext);
+    return context;
 }
