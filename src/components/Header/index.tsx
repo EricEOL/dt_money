@@ -18,8 +18,6 @@ export function Header({onOpenNewTransactionModal}: HeaderProps) {
 				>
 					Nova transação
             	</button>
-
-
 			</Content>
 		</Container>
 	)
